@@ -22,13 +22,21 @@ The bot is use full to perform various operations in discord. It is user defined
 
 ## Topics to be covered
 In this tutorial we will cover basic things to make a discord information bot. And importantly also tell about the base structure to make run the bot which could be applied even for huge bots. So, here are the topics we cover:
-1. Python Basic before Bot building.
-2. Asynchronous Programming in Python Basics
-3. Discord Developer Platform
-4. Types of Commands
-5. Discordpy Library
-6. Cogs
-7. Using learned Concepts
+1. [Introduction](#introduction)
+2. [Why Do We Need Bots?](#why-do-we-need-bots)
+3. [Topics to be Covered](#topics-to-be-covered)
+4. [Basic Python Concepts](#basic-python-concepts)
+    - [Docstrings](#docstrings)
+    - [More About Functions](#more-about-functions)
+    - [Decorators](#decorators)
+    - [Classes](#classes)
+5. [Basics of Asynchronous Programming](#basics-of-asynchronous-programming)
+6. [Discord Developer Platform](#discord-developer-platform)
+7. [Types of Commands](#types-of-commands)
+8. [Discordpy Library](#discordpy-library)
+    - [Intents](#intents)
+9. [Cogs](#cogs)
+10. [Using Learned Concepts](#using-learned-concepts)
 
 ## Basic Python Concepts
 
@@ -391,14 +399,19 @@ This even works well for huge tasks and that is why it was made. :wink:
 Discord has a platform for developers. [Discord Developers Platform](<https://discord.com/developers/applications>) is a site where you can build applications by coding which interact with discord. And help you automate few tasks and even have fun. This is done using libraries which uses API to interact with discord application and then provide things for you as per your code in discord. What do these applications do? These act like users also reffered to as bots. They become online when the code is running. And as per the code they perform actions. The code is a sequence of asynchronous functions. Each function gets triggered with a command. Few commands are used by typing normally a message but having a prefix in them which trigers the command. Other method is syncing it with discord api and telling it that make a setting such that when we type `/` in message field in discord you get the commands (in those as you type command name it shows autocomplete suggestions). These type are generally refered to as slash commands.
 
 Ok. Now lets start making an application first before making it into its functional state. Follow the billow steps:
-1. Go to [Discord Developers Platform](<https://discord.com/developers/applications>). You will see the screen like this bellow. ![Dev Portal Image Alt Text](.images/devportal.PNG)
-2. On the top right click on new application and give the bot your name.
-3. Now here you can fill up name, description and tags as shown there. You see a private information like application id and public key. (This information should not be shared.) ![General Information in Dev Portal image](.images\gen_info.PNG)
-4. Other things are not of that much relevance right now. Its important when the application becomes large enough and you have your own site dealing with few of its operations. Next, go to `Installation tab on left hand side of the screen. And in `Install link` select `Discord Provided Link` in dropdown. ![alt text](.images/installation.png)
-5. Down you will see `Default Install Settings` in that `Guild Install` in that `Scopes` and there click on the dropdown and select `bot`. (As this application is a bot.) And then you see `Permissions` in that type or select `Administrator`. Note that, this is a very dangerous and powerfull permision so give it to only the bots you trust like your own bot. It has rights to control the server and even see each and every channel. After all this save the changes. Now it should look something like this: [alt text](.images/filled_installation.PNG)
-6. And again in the left tab go for `Bot` decide what should be the bot icon (Profile image of bot), bot banner(background image of profile image). And then bellow configure the settings as shown and save changes.![alt text](.images/bot.png)
-7. As its first time reset the token and copy it. This is a secret way in which you will communicate the discord API. When ever I refer to Token use this. (In case the token is not working or your token gets shared to another person whom you didn't intend to then reset it.)
-8. Now go to your server where you want to invite the bot. (I prefer you to create your own new server for testing purposes.) And there paste the link in some channel. Then click on the link and you will be asked to select the server where you want to invite then authorize (A guided process which you could complete easily) and then bot is added to the server. Alternative thing is for you to search it on browser on which your discord account is logged in. And try it.
+1. Go to [Discord Developers Platform](<https://discord.com/developers/applications>). You will see the screen like this bellow.
+![Dev Portal Image Alt Text](./images/devportal.PNG)
+3. On the top right click on new application and give the bot your name.
+4. Now here you can fill up name, description and tags as shown there. You see a private information like application id and public key. (This information should not be shared.)
+![General Information in Dev Portal image](./images/gen_info.PNG)
+5. Other things are not of that much relevance right now. Its important when the application becomes large enough and you have your own site dealing with few of its operations. Next, go to `Installation tab on left hand side of the screen. And in `Install link` select `Discord Provided Link` in dropdown.
+![alt text](./images/installation.png)
+7. Down you will see `Default Install Settings` in that `Guild Install` in that `Scopes` and there click on the dropdown and select `bot`. (As this application is a bot.) And then you see `Permissions` in that type or select `Administrator`. Note that, this is a very dangerous and powerfull permision so give it to only the bots you trust like your own bot. It has rights to control the server and even see each and every channel. After all this save the changes. Now it should look something like this:
+![alt text](./images/filled_installation.PNG)
+9. And again in the left tab go for `Bot` decide what should be the bot icon (Profile image of bot), bot banner(background image of profile image). And then bellow configure the settings as shown and save changes.
+![alt text](./images/bot.png)
+11. As its first time reset the token and copy it. This is a secret way in which you will communicate the discord API. When ever I refer to Token use this. (In case the token is not working or your token gets shared to another person whom you didn't intend to then reset it.)
+12. Now go to your server where you want to invite the bot. (I prefer you to create your own new server for testing purposes.) And there paste the link in some channel. Then click on the link and you will be asked to select the server where you want to invite then authorize (A guided process which you could complete easily) and then bot is added to the server. Alternative thing is for you to search it on browser on which your discord account is logged in. And try it.
 > **Note:** The possible error is for few of you it will not be showing your desired server to add bot to. In that case it means that you have no server which has permission to add bot in that. The best thing to get that permission easily is to either request some admin in that server or have your own server in which you default would have permission to add bot there.
 
 After these all you have made a ready application to go ahead and now its offline as there is no code running behind to make it online. In the comming sections, I will tell how to make it online and perform tasks.
@@ -406,12 +419,13 @@ After these all you have made a ready application to go ahead and now its offlin
 ## Types of Commands
 In the previous sections, I have told you a bit about commands. Here I am going to elaborate it a bit more. This section is going to be short. We have discussed 2 types of commands. And I will make you familiar with even the technical terminologies of it. And also discuss one more types of commands which is hybrid of both the types. Now, lets go forward types of commands.
 1. Slash commands
-![alt text](.images/slashcmds.PNG)
+![slash commands](./images/slashcmds.PNG)
     - As you can see in the picture, these get triggered by using the slash and following the name of the command. These commands specific to what you are seeing are called buitin commands because it is default given by discord application (aka builtin). And we can define our own bot slash commands which come here.
     - These are also called as application commands as they sync into discord application. And as this is connected to directly discord this has limitations on number of these commands per bot.
     - In these commands there are 2 scopes or area under which they work. Global level syncing of these commmands i.e. they will be visible to all servers (when bot is invited) or guild level syncing which are visible only to a server. Here, guild means another name to refer server.
-2. Message Context Commands
+2. Message Context Commands  
 ![ctx commands image from web](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*z_I0NNJGGBFY8k18WZw1kQ.png)
+
     - These commands are just focussed on displaying messages in the servers. They don't have much to do with complex operations. 
     - These use prefix to get triggered and operate. Here in the image the triger is the prefix `!`. Meanwhile, you can set your own prefix.
 3. Hybrid commands
