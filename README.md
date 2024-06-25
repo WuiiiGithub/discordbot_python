@@ -79,8 +79,4 @@ Cogs are used for organizing your bot's commands and events into separate files 
 
 ## Using Learned Concepts
 
-Practical examples of applying the concepts learned in previous sections to build a functional Discord bot.
-
----
-
-Follow the steps and examples in this tutorial to create your own Discord bot. Modify and expand the bot's functionality as needed to suit your specific requirements. Happy coding!
+A small section to help with ideas while using learned concepts. Follow the steps and examples in this tutorial to create your own Discord bot. Modify and expand the bot's functionality as needed to suit your specific requirements. *Happy coding!*
