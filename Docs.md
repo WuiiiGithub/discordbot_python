@@ -37,6 +37,7 @@ In this tutorial we will cover basic things to make a discord information bot. A
     - [Intents](#intents)
 9. [Cogs](#cogs)
 10. [Using Learned Concepts](#using-learned-concepts)
+11. [Future Concepts](#future-concepts)
 
 ## Basic Python Concepts
 
@@ -139,7 +140,26 @@ def say_hello():
 say_hello()
 ```
 
-In this example, `my_decorator` is a decorator that wraps the `say_hello` function.
+In this example, `my_decorator` is a decorator that wraps the `say_hello` function. Lets see one more example of it.
+```py
+# Define a decorator function
+def my_decorator(func):
+    def wrapper(*args, **kwargs): # takes all arguments of function in format as discussed.
+        print("Something is happening before the function is called.")
+        result = func(*args, **kwargs)  # Call the original function with its arguments
+        print("Something is happening after the function is called.")
+        return result  # Return the result of the original function
+    return wrapper
+
+# Define a function to be decorated
+@my_decorator
+def say_hello(name, greet="Hi"):
+    print(f"{greet}, {name}!")
+
+# Now, when calling say_hello, it will execute the decorated version
+say_hello("Alice")
+say_hello("Bob")
+```
 
 ### Classes
 Classes in Python are a fundamental part of object-oriented programming. They are used to create new user-defined data structures that contain both data and methods. Here is a basic example:
@@ -642,7 +662,22 @@ bot.run("PASTE YOUR COPIED TOKEN HERE")
 Explaining a bit of what I did, Firstly, I made the command using application commands command method and then it has a async function which gets executed. And then I added two message context commands. This helps me to operate from discord message field and control the code. So, one is for syncing the toss application command in bot's tree of commands on the guild where bot was triggered to sync. I got to know the guild where the bot was triggered by using `ctx.guild` method. This gave me the guild or server object. And then I can extract server id by telling `ctx.guild.id`. Finaly I used add command to first add it to bot's tree of commands. And then what I did was to sync the tree in discord's api. This final things shows api what is our new structure. Similarly I removed the application command. Here, I used try and except clauses because if the command is already synced/ registered or in other case command is not there which I am removing it displays the messages as show above.
 
 ## Cogs
-While working with a huge bot you would need the code of things to be in different files. This helps in modular level of working in the software. And it even increases the productivity. It would be messy if we writing all or many lines of code in a single file. This is done using concept called **Cogs**. I have personally made the file structure of it [here](<https://github.com/WuiiiGithub/discordbot_python/files/templates/cogs_template>). You can modify and treat it as a template for your work.
+While working with a huge bot you would need the code of things to be in different files. This helps in modular level of working in the software. And it even increases the productivity. It would be messy if we writing all or many lines of code in a single file. This is done using concept called **Cogs**. I have personally made the file structure of it [here](<https://github.com/WuiiiGithub/discordbot_python/tree/main/files/templates/cogs_template>). You can modify and treat it as a template for your work.
 
 ## Using Learned Concepts
-Will be discussing later.
+### Safe practices
+- Use message commands for just information displaying purposes.
+- Use slash commands where privacy of input is must.
+- Minimize computational complexity while coding bot.
+- Don't share private information like bot token, client id...etc.
+- Take care of users privacy if you are computing with their data.
+### Ideas of Bot
+- AI based Moderation
+- Server setup Bots
+- Utilities Bot (For basic things)
+- AI based content writing bots.
+- Chatbots.
+- Bots to create bots.
+
+## Future Concepts
+In future I will be discussing the concept of views, modals and few other concepts which makes UI more better while interacting with the bot. This all will be done in reference with the cogs template. i.e. If you add the code provided here with proper indentation it should work there. From then I am thinking to make each cog file with new concept said in that simplifying the things. Thank you.
